@@ -69,9 +69,19 @@ test('content fits desktop, tablet and small mobile widths across all languages'
       const metrics = await page.evaluate(() => ({
         viewport: window.innerWidth,
         page: document.documentElement.scrollWidth,
-        body: document.body.scrollWidth
+        body: document.body.scrollWidth,
+        offenders: [...document.querySelectorAll('body *')]
+          .map((element) => ({element, bounds:element.getBoundingClientRect()}))
+          .filter(({bounds}) => bounds.width && bounds.right > window.innerWidth + 2)
+          .slice(0, 12)
+          .map(({element, bounds}) => ({
+            node: element.tagName.toLowerCase(),
+            selector: element.id ? '#' + element.id : '.' + String(element.className || '').replace(/\s+/g,'.').slice(0,60),
+            right: Math.round(bounds.right)
+          }))
       }));
-      expect(metrics.page, lang + ' at ' + width + 'px overflows').toBeLessThanOrEqual(metrics.viewport + 2);
+      expect(metrics.page, lang + ' at ' + width + 'px overflows: ' + JSON.stringify(metrics.offenders))
+        .toBeLessThanOrEqual(metrics.viewport + 2);
     }
   }
 });
