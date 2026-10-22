@@ -1,6 +1,6 @@
 # Reza Esmail Gol — Multilingual Developer Portfolio
 
-**English · فارسی · Deutsch** &nbsp; | &nbsp; **Vanilla JavaScript · Responsive · RTL/LTR · Light/Dark**
+**English · فارسی · Deutsch** &nbsp; | &nbsp; **Vanilla JavaScript · Responsive · RTL/LTR · Light/Dark · Browser QA**
 
 A lightweight, modern developer portfolio with selected open-source projects, multilingual content, accessible navigation, responsive layouts and a polished design system.
 
@@ -12,13 +12,13 @@ A lightweight, modern developer portfolio with selected open-source projects, mu
 
 ## Highlights
 
-- **Three complete languages:** English (EN), Persian (FA, right-to-left) and German (DE), from a local, valid [`languages.json`](languages.json) file.
+- **Three complete languages:** English (EN), Persian (FA, right-to-left) and German (DE), from a local, valid [`languages.json`](languages.json) file; shareable `?lang=en`, `?lang=fa` and `?lang=de` URLs.
 - **Responsive design:** Navigation, hero layout, capability cards, project grid and contact section adjust for desktop, tablet and mobile.
 - **Light and dark themes:** Respects the operating-system preference until changed, then remembers the user's selection.
 - **Real GitHub projects:** Six manually curated public-repository links and an “Explore more” link.
 - **Project filters:** Switch between all projects, web/apps and AI/tools.
-- **Accessibility basics:** Semantic sections, skip link, focus states, keyboard-friendly menu controls, ARIA states, reduced-motion support and clear contrast.
-- **Search-friendly foundation:** Descriptive metadata, social preview text, JSON-LD person profile and an SVG favicon.
+- **Accessibility basics:** Semantic sections, skip link, focus states, keyboard-friendly mobile menu (including Escape focus return), translated ARIA labels, reduced-motion support and thoughtful contrast.
+- **Search-friendly foundation:** Localized HTML title/description and Open Graph metadata, Twitter summary text, JSON-LD person profile and an SVG favicon. A hosted canonical URL and raster social image must be configured when a final domain is selected.
 - **Lightweight stack:** Plain HTML, CSS and JavaScript. No build step, frontend framework, npm dependencies or external translation endpoint.
 
 ### Selected repositories
@@ -56,9 +56,14 @@ Node.js 20+ (only for development checks, not for the website itself):
 ```bash
 node --check script.js
 node --test tests/site.test.mjs
+
+# Interactive Chromium QA (installs dev dependencies and browser):
+npm install --no-package-lock
+npx playwright install chromium
+npm run test:browser
 ```
 
-The GitHub Actions workflow [`quality.yml`](.github/workflows/quality.yml) runs these checks on pushes and pull requests. These tests are static safety and content checks; real device and browser QA remains necessary before promoting to production.
+The GitHub Actions workflow [`quality.yml`](.github/workflows/quality.yml) runs **both** the static checks and real Chromium browser smoke tests. The browser tests cover language and URL sharing, RTL, theme persistence, project filtering, mobile-menu behavior, JavaScript runtime errors and horizontal overflow at mobile/tablet/desktop widths. They also generate actual `desktop-en.png` and `mobile-fa.png` screenshots, downloadable from the workflow run's **portfolio-browser-qa** artifact (retained for 14 days). Physical Safari/iPhone and Android QA is still necessary before claiming full device coverage.
 
 ## Structure
 
@@ -69,10 +74,13 @@ The GitHub Actions workflow [`quality.yml`](.github/workflows/quality.yml) runs 
 ├── script.js                   # Languages, theme, filters, navigation
 ├── languages.json              # EN / FA / DE translations
 ├── favicon.svg                 # Brand favicon
+├── package.json                # Dev-only Playwright dependency & QA commands
+├── playwright.config.mjs      # Browser QA configuration
 ├── docs/
 │   └── portfolio-illustration.svg  # Lightweight design illustration
 ├── tests/
-│   └── site.test.mjs           # Local content / structure checks
+│   ├── site.test.mjs           # Local content / structure checks
+│   └── browser/portfolio.spec.mjs  # Interactive Chromium and screenshots
 └── .github/workflows/
     └── quality.yml             # CI checks
 ```
@@ -97,9 +105,9 @@ Before publishing: configure a real site URL, adjust social preview image URLs t
 
 ## Security and privacy
 
-- No API keys, tokens or private project details in the client.
-- No HTML injection from translation strings: content is written using `textContent`.
-- Only a language and theme preference are stored in `localStorage`.
+- No API keys, tokens or private project details in the client. Google Fonts is the only optional runtime third-party asset; consider self-hosting fonts when privacy policies or offline support require it.
+- No HTML injection from translation strings: content is written using `textContent`, and descriptive ARIA labels use `setAttribute` with trusted translation strings.
+- Only a language and theme preference are stored in `localStorage`; language can also be explicitly chosen using the `?lang=` URL parameter.
 - External GitHub links use `rel="noopener noreferrer"`.
 - External translation API and its HTTP mixed-content dependency were removed.
 
@@ -111,7 +119,7 @@ Before publishing: configure a real site URL, adjust social preview image URLs t
 
 این پروژه، نسخه بازطراحی‌شده وب‌سایت شخصی رضا اسماعیل گل است. تمرکز اصلی آن بر ظاهر مدرن، سرعت بارگذاری، تجربه کاربری روان و نمایش پروژه‌های عمومی GitHub قرار دارد.
 
-**امکانات اصلی:** پشتیبانی از فارسی راست‌به‌چپ، انگلیسی و آلمانی؛ حالت تاریک و روشن؛ سازگاری با موبایل و دسکتاپ؛ نمایش و فیلتر نمونه‌کارها؛ بخش تخصص‌ها، معرفی شخصی و ارتباط از طریق ایمیل؛ ساختار معنایی و امکانات اولیه سئو و دسترس‌پذیری.
+**امکانات اصلی:** پشتیبانی از فارسی راست‌به‌چپ، انگلیسی و آلمانی با لینک مستقیم هر زبان؛ حالت تاریک و روشن؛ سازگاری با موبایل و دسکتاپ؛ نمایش و فیلتر نمونه‌کارها؛ بخش تخصص‌ها، معرفی شخصی و ارتباط از طریق ایمیل؛ ساختار معنایی و امکانات اولیه سئو و دسترس‌پذیری. تست خودکار مرورگر Chromium در GitHub Actions انجام می‌شود و از نسخه دسکتاپ و موبایل اسکرین‌شات می‌گیرد.
 
 **اجرای محلی:** پس از دریافت کدها، فرمان `python -m http.server 8000` را اجرا کرده و آدرس `http://localhost:8000` را باز کنید. برای تست ساختار و ترجمه‌ها از `node --test tests/site.test.mjs` استفاده کنید.
 
