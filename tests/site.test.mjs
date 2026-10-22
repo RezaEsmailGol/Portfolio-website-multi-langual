@@ -89,3 +89,21 @@ test('filters cover every project with supported categories', () => {
     assert.match(html, new RegExp('data-filter="' + filter + '"'));
   }
 });
+
+
+test('aria labels are translated for all supported languages', () => {
+  const keys = [...html.matchAll(/data-i18n-aria-label="([^"]+)"/g)].map(match => match[1]);
+  assert.ok(keys.length >= 8, 'Expected translated accessible names');
+  for (const lang of ['en','fa','de']) {
+    for (const key of keys) assert.ok(translations[lang][key], 'Missing aria translation: ' + lang + '.' + key);
+  }
+});
+
+test('sharing locale links and social metadata are implemented', () => {
+  assert.match(js, /new URLSearchParams\(window\.location\.search\)/);
+  assert.match(js, /history\.replaceState/);
+  assert.match(html, /meta property="og:locale"/);
+  assert.match(html, /meta name="twitter:title"/);
+  assert.match(html, /meta name="twitter:description"/);
+  assert.match(html, /name="robots"/);
+});
