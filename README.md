@@ -4,7 +4,7 @@
 
 A lightweight, modern developer portfolio with selected open-source projects, multilingual content, accessible navigation, responsive layouts and a polished design system.
 
-> **Status:** This redesigned version lives in \`feat/professional-multilingual-portfolio-2026\` until its pull request is reviewed and merged into \`main\`. Project descriptions are illustrative summaries of public repositories, not claims about production deployment or measurable results.
+> **Status:** This redesigned version lives in `feat/professional-multilingual-portfolio-2026` until its pull request is reviewed and merged into `main`. Project descriptions are illustrative summaries of public repositories, not claims about production deployment or measurable results.
 
 ![Conceptual illustration of the redesigned portfolio](docs/portfolio-illustration.svg)
 
@@ -12,7 +12,7 @@ A lightweight, modern developer portfolio with selected open-source projects, mu
 
 ## Highlights
 
-- **Three complete languages:** English (EN), Persian (FA, right-to-left) and German (DE), from a local, valid [\`languages.json\`](languages.json) file.
+- **Three complete languages:** English (EN), Persian (FA, right-to-left) and German (DE), from a local, valid [`languages.json`](languages.json) file.
 - **Responsive design:** Navigation, hero layout, capability cards, project grid and contact section adjust for desktop, tablet and mobile.
 - **Light and dark themes:** Respects the operating-system preference until changed, then remembers the user's selection.
 - **Real GitHub projects:** Six manually curated public-repository links and an “Explore more” link.
@@ -38,33 +38,33 @@ A lightweight, modern developer portfolio with selected open-source projects, mu
 
 Clone the correct repository and start any static HTTP server:
 
-\`\`\`bash
+```bash
 git clone https://github.com/RezaEsmailGol/Portfolio-website-multi-langual.git
 cd Portfolio-website-multi-langual
 git switch feat/professional-multilingual-portfolio-2026
 
 # Python 3:
 python -m http.server 8000
-\`\`\`
+```
 
 Open **http://localhost:8000**. You can also use VS Code Live Server.
 
-**Do not open \`index.html\` using a \`file://\` URL.** Fetching local JSON via the \`fetch\` API is blocked by many browsers under the file protocol. The initial English HTML is still readable as a fallback.
+**Do not open `index.html` using a `file://` URL.** Fetching local JSON via the `fetch` API is blocked by many browsers under the file protocol. The initial English HTML is still readable as a fallback.
 
 ### Running checks
 
 Node.js 20+ (only for development checks, not for the website itself):
 
-\`\`\`bash
+```bash
 node --check script.js
 node --test tests/site.test.mjs
-\`\`\`
+```
 
-The GitHub Actions workflow [\`quality.yml\`](.github/workflows/quality.yml) runs these checks on pushes and pull requests. These tests are static safety and content checks; real device and browser QA remains necessary before promoting to production.
+The GitHub Actions workflow [`quality.yml`](.github/workflows/quality.yml) runs these checks on pushes and pull requests. These tests are static safety and content checks; real device and browser QA remains necessary before promoting to production.
 
 ## Structure
 
-\`\`\`text
+```text
 .
 ├── index.html                  # Semantic sections, curated project cards and SEO markup
 ├── styles.css                  # Responsive themes, layouts and RTL support
@@ -77,16 +77,16 @@ The GitHub Actions workflow [\`quality.yml\`](.github/workflows/quality.yml) run
 │   └── site.test.mjs           # Local content / structure checks
 └── .github/workflows/
     └── quality.yml             # CI checks
-\`\`\`
+```
 
-The legacy \`test.php\` is **not part of the new frontend**, and the site no longer fetches translations from an external HTTP URL. Legacy screenshots and illustration assets have been retained in the repository for reference.
+The legacy `test.php` is **not part of the new frontend**, and the site no longer fetches translations from an external HTTP URL. Legacy screenshots and illustration assets have been retained in the repository for reference.
 
 ### Updating your information
 
-1. Edit your project cards and GitHub URLs inside \`index.html\`.
-2. Edit section headings and descriptions inside \`languages.json\` **in all three languages**, using identical translation keys.
-3. Change the public email in \`index.html\` and the Person JSON-LD block if needed.
-4. Update colors, spacing and typography using CSS custom properties in \`styles.css\`.
+1. Edit your project cards and GitHub URLs inside `index.html`.
+2. Edit section headings and descriptions inside `languages.json` **in all three languages**, using identical translation keys.
+3. Change the public email in `index.html` and the Person JSON-LD block if needed.
+4. Update colors, spacing and typography using CSS custom properties in `styles.css`.
 5. Re-run the automated checks and review at mobile widths, especially after adding long text translations.
 
 The site uses Google Fonts for Inter and Vazirmatn, with system font fallbacks. To be fully self-hosted/offline, bundle correctly licensed fonts or rely on the system fallbacks. The contact button uses **mailto**, not a backend contact form. No data is submitted to a server.
@@ -100,9 +100,9 @@ Before publishing: configure a real site URL, adjust social preview image URLs t
 ## Security and privacy
 
 - No API keys, tokens or private project details in the client.
-- No HTML injection from translation strings: content is written using \`textContent\`.
-- Only a language and theme preference are stored in \`localStorage\`.
-- External GitHub links use \`rel="noopener noreferrer"\`.
+- No HTML injection from translation strings: content is written using `textContent`.
+- Only a language and theme preference are stored in `localStorage`.
+- External GitHub links use `rel="noopener noreferrer"`.
 - External translation API and its HTTP mixed-content dependency were removed.
 
 ---
@@ -115,7 +115,7 @@ Before publishing: configure a real site URL, adjust social preview image URLs t
 
 **امکانات اصلی:** پشتیبانی از فارسی راست‌به‌چپ، انگلیسی و آلمانی؛ حالت تاریک و روشن؛ سازگاری با موبایل و دسکتاپ؛ نمایش و فیلتر نمونه‌کارها؛ بخش تخصص‌ها، معرفی شخصی و ارتباط از طریق ایمیل؛ ساختار معنایی و امکانات اولیه سئو و دسترس‌پذیری.
 
-**اجرای محلی:** پس از دریافت کدها، فرمان \`python -m http.server 8000\` را اجرا کرده و آدرس \`http://localhost:8000\` را باز کنید. برای تست ساختار و ترجمه‌ها از \`node --test tests/site.test.mjs\` استفاده کنید.
+**اجرای محلی:** پس از دریافت کدها، فرمان `python -m http.server 8000` را اجرا کرده و آدرس `http://localhost:8000` را باز کنید. برای تست ساختار و ترجمه‌ها از `node --test tests/site.test.mjs` استفاده کنید.
 
 **نکته:** تصویر بالای README یک طرح گرافیکی از زبان بصری محصول است، نه اسکرین‌شات تست‌شده. دکمه تماس در حال حاضر نرم‌افزار ایمیل را باز می‌کند و فرم ارسال پیام به سرور وجود ندارد. پیش از انتشار عمومی باید تست مرورگرهای واقعی انجام شود.
 
@@ -123,7 +123,7 @@ Before publishing: configure a real site URL, adjust social preview image URLs t
 
 Ein modernes, responsives **Full-Stack-Entwicklerportfolio** in Englisch, Persisch (RTL) und Deutsch. Die Website zeigt reale öffentliche GitHub-Projekte und bietet ein barrierebewusstes Navigationskonzept, Projektfilter sowie einen hellen und dunklen Modus. Entwickelt mit HTML, CSS und Vanilla JavaScript – ohne Framework oder Build-Prozess.
 
-**Lokal starten:** \`python -m http.server 8000\` und im Browser \`http://localhost:8000\` öffnen. Der Kontakt-Button verwendet \`mailto:\`; es gibt kein Backend-Kontaktformular. Der Header oben ist eine Illustration, kein bestätigter Live-Screenshot.
+**Lokal starten:** `python -m http.server 8000` und im Browser `http://localhost:8000` öffnen. Der Kontakt-Button verwendet `mailto:`; es gibt kein Backend-Kontaktformular. Der Header oben ist eine Illustration, kein bestätigter Live-Screenshot.
 
 ---
 
