@@ -72,7 +72,17 @@
     "filterLabel": "Filter projects",
     "filterResult": "{count} projects shown",
     "metaTitle": "Reza Esmail Gol | Full-Stack Developer",
-    "metaDescription": "Reza Esmail Gol — Full-stack web developer building accessible, fast digital experiences, AI tools and useful software. Explore selected projects."
+    "metaDescription": "Reza Esmail Gol — Full-stack web developer building accessible, fast digital experiences, AI tools and useful software. Explore selected projects.",
+    "brandLabel": "Reza Esmail Gol — Home",
+    "codeVisualLabel": "Decorative illustration of a developer's code editor",
+    "projectChatLabel": "View Chat Video Studio source on GitHub",
+    "projectGermanLabel": "View Menschen A1.1 source on GitHub",
+    "projectSeoLabel": "View SEO Mind source on GitHub",
+    "projectVoiceLabel": "View Lahne Man source on GitHub",
+    "projectWpLabel": "View WP Booster source on GitHub",
+    "projectPortfolioLabel": "View Multilingual Portfolio source on GitHub",
+    "languageChanged": "Language changed to English",
+    "translationsUnavailable": "Translations are unavailable. English content is still accessible."
   },
   "fa": {
     "skip": "رفتن به محتوای اصلی",
@@ -147,7 +157,17 @@
     "filterLabel": "فیلتر پروژه‌ها",
     "filterResult": "{count} پروژه نمایش داده می‌شود",
     "metaTitle": "رضا اسماعیل گل | توسعه‌دهنده فول‌استک",
-    "metaDescription": "پورتفولیوی رضا اسماعیل گل؛ توسعه‌دهنده فول‌استک با تمرکز بر وب، هوش مصنوعی، اتوماسیون و تجربه کاربری. پروژه‌ها و نمونه‌کارهای منتخب."
+    "metaDescription": "پورتفولیوی رضا اسماعیل گل؛ توسعه‌دهنده فول‌استک با تمرکز بر وب، هوش مصنوعی، اتوماسیون و تجربه کاربری. پروژه‌ها و نمونه‌کارهای منتخب.",
+    "brandLabel": "رضا اسماعیل گل — خانه",
+    "codeVisualLabel": "تصویر تزئینی محیط کدنویسی توسعه‌دهنده",
+    "projectChatLabel": "مشاهده کد استودیوی ویدیوی چت در گیت‌هاب",
+    "projectGermanLabel": "مشاهده کد تمرین آلمانی در گیت‌هاب",
+    "projectSeoLabel": "مشاهده کد سئو مایند در گیت‌هاب",
+    "projectVoiceLabel": "مشاهده کد لحن من در گیت‌هاب",
+    "projectWpLabel": "مشاهده کد وردپرس بوستر در گیت‌هاب",
+    "projectPortfolioLabel": "مشاهده کد پورتفولیوی چندزبانه در گیت‌هاب",
+    "languageChanged": "زبان به فارسی تغییر کرد",
+    "translationsUnavailable": "بارگیری ترجمه‌ها ممکن نیست. محتوای انگلیسی در دسترس است."
   },
   "de": {
     "skip": "Zum Inhalt springen",
@@ -222,6 +242,16 @@
     "filterLabel": "Projekte filtern",
     "filterResult": "{count} Projekte angezeigt",
     "metaTitle": "Reza Esmail Gol | Full-Stack-Entwickler",
-    "metaDescription": "Reza Esmail Gol – Full-Stack-Entwickler für Webanwendungen, Automatisierung, KI-Tools und benutzerfreundliche digitale Produkte."
+    "metaDescription": "Reza Esmail Gol – Full-Stack-Entwickler für Webanwendungen, Automatisierung, KI-Tools und benutzerfreundliche digitale Produkte.",
+    "brandLabel": "Reza Esmail Gol — Startseite",
+    "codeVisualLabel": "Dekorative Darstellung eines Code-Editors",
+    "projectChatLabel": "Quellcode von Chat Video Studio auf GitHub ansehen",
+    "projectGermanLabel": "Quellcode von Menschen A1.1 auf GitHub ansehen",
+    "projectSeoLabel": "Quellcode von SEO Mind auf GitHub ansehen",
+    "projectVoiceLabel": "Quellcode von Lahne Man auf GitHub ansehen",
+    "projectWpLabel": "Quellcode von WP Booster auf GitHub ansehen",
+    "projectPortfolioLabel": "Quellcode des mehrsprachigen Portfolios auf GitHub ansehen",
+    "languageChanged": "Sprache auf Deutsch umgestellt",
+    "translationsUnavailable": "Übersetzungen sind nicht verfügbar. Die englische Version bleibt lesbar."
   }
 }
