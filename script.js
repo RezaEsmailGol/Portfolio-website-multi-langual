@@ -56,7 +56,7 @@
     document.querySelector(".filters").setAttribute("aria-label", copy.filterLabel || "Filter projects");
   }
 
-  function applyLanguage(next) {
+  function applyLanguage(next, updateUrl = false, announce = false) {
     if (!supported.includes(next)) return;
     const copy = dictionary[next];
     if (!copy) return;
@@ -67,6 +67,10 @@
       const key = element.dataset.i18n;
       if (typeof copy[key] === "string") element.textContent = copy[key];
     });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+      const key = element.dataset.i18nAriaLabel;
+      if (typeof copy[key] === "string") element.setAttribute("aria-label", copy[key]);
+    });
     languageButtons.forEach((button) => {
       const active = button.dataset.lang === next;
       button.classList.toggle("active", active);
@@ -75,24 +79,42 @@
     if (copy.metaTitle) {
       document.title = copy.metaTitle;
       document.querySelector('meta[property="og:title"]').content = copy.metaTitle;
+      document.querySelector('meta[name="twitter:title"]').content = copy.metaTitle;
     }
     if (copy.metaDescription) {
       document.querySelector('meta[name="description"]').content = copy.metaDescription;
       document.querySelector('meta[property="og:description"]').content = copy.metaDescription;
+      document.querySelector('meta[name="twitter:description"]').content = copy.metaDescription;
     }
+    document.querySelector('meta[property="og:locale"]').content =
+      next === "fa" ? "fa_IR" : next === "de" ? "de_DE" : "en_US";
     updateControlLabels();
     savePreference("portfolio-language", next);
+    if (updateUrl) {
+      // Shareable deep links work on any static host without a server-side router.
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", next);
+        window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      } catch (error) {
+        console.warn("Could not update the language URL", error);
+      }
+    }
+    if (announce) status.textContent = copy.languageChanged || "Language updated";
   }
   languageButtons.forEach((button) => button.addEventListener("click", () => {
     if (!dictionary[button.dataset.lang]) {
-      status.textContent = "Translation files are not available. Please serve the project with a web server.";
+      status.textContent = "Translations are unavailable. English content is still accessible.";
       return;
     }
-    applyLanguage(button.dataset.lang);
+    applyLanguage(button.dataset.lang, true, true);
   }));
   const preferredLanguage = readPreference("portfolio-language");
   const browserLanguage = (navigator.language || "en").split("-")[0].toLowerCase();
-  const initialLanguage = supported.includes(preferredLanguage) ? preferredLanguage : (supported.includes(browserLanguage) ? browserLanguage : "en");
+  const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+  const initialLanguage = supported.includes(urlLanguage) ? urlLanguage
+    : supported.includes(preferredLanguage) ? preferredLanguage
+    : supported.includes(browserLanguage) ? browserLanguage : "en";
 
   fetch("./languages.json")
     .then((response) => { if (!response.ok) throw new Error("Translation request failed"); return response.json(); })
@@ -103,17 +125,20 @@
     })
     .catch((error) => {
       console.warn("Portfolio translations could not be loaded:", error);
-      status.textContent = "English content is available. Translations could not be loaded.";
+      status.textContent = "Translations are unavailable. English content is still accessible.";
     });
 
-  const setMenu = (open) => {
+  const setMenu = (open, restoreFocus = false) => {
     nav.classList.toggle("open", open);
     menu.setAttribute("aria-expanded", String(open));
     updateControlLabels();
+    if (!open && restoreFocus) menu.focus();
   };
   menu.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
   nav.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener("click", () => setMenu(false)));
-  document.addEventListener("keydown", (event) => { if (event.key === "Escape") setMenu(false); });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && nav.classList.contains("open")) setMenu(false, true);
+  });
   document.addEventListener("click", (event) => {
     if (!header.contains(event.target) && nav.classList.contains("open")) setMenu(false);
   });
