@@ -81,8 +81,8 @@ img,svg{display:block;max-width:100%}
 .hero-visual{height:min(520px,46vw);min-height:430px;min-width:0;max-width:100%;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;position:relative;isolation:isolate}
 .visual-grid{position:absolute;inset:4% -4%;z-index:-1;opacity:.28;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse,black,transparent 75%)}
 .orb{position:absolute;border-radius:50%;z-index:-1;filter:blur(8px)}
-.orb-one{height:360px;width:360px;right:0;top:5%;background:radial-gradient(circle,rgba(119,97,255,.43),rgba(119,97,255,0) 70%)}
-.orb-two{height:310px;width:310px;left:0;bottom:-3%;background:radial-gradient(circle,rgba(41,215,194,.18),transparent 70%)}
+.orb-one{height:360px;width:min(360px,100%);right:0;top:5%;background:radial-gradient(circle,rgba(119,97,255,.43),rgba(119,97,255,0) 70%)}
+.orb-two{height:310px;width:min(310px,100%);left:0;bottom:-3%;background:radial-gradient(circle,rgba(41,215,194,.18),transparent 70%)}
  .code-card{width:min(100%,486px);max-width:100%;min-width:0;position:relative;border:1px solid rgba(162,180,224,.25);border-radius:18px;overflow:hidden;background:#101827;box-shadow:0 40px 85px rgba(0,0,0,.36),0 0 55px rgba(108,92,241,.12);transform:rotate(-2deg);transition:transform .4s}
 .code-card:hover{transform:rotate(0) translateY(-5px)}
 .code-topbar{height:53px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-inline:21px;background:#182238;color:#96a6c3;font-size:12px;font-family:ui-monospace,monospace;border-bottom:1px solid rgba(173,188,217,.11)}
