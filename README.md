@@ -4,7 +4,7 @@
 
 A lightweight, modern developer portfolio with selected open-source projects, multilingual content, accessible navigation, responsive layouts and a polished design system.
 
-> **Status:** This redesigned version lives in `feat/professional-multilingual-portfolio-2026` until its pull request is reviewed and merged into `main`. Project descriptions are illustrative summaries of public repositories, not claims about production deployment or measurable results.
+> **Version:** Professional multilingual redesign (2026). Project descriptions are illustrative summaries of public repositories, not claims about production deployment or measurable results.
 
 ![Conceptual illustration of the redesigned portfolio](docs/portfolio-illustration.svg)
 
@@ -41,8 +41,6 @@ Clone the correct repository and start any static HTTP server:
 ```bash
 git clone https://github.com/RezaEsmailGol/Portfolio-website-multi-langual.git
 cd Portfolio-website-multi-langual
-git switch feat/professional-multilingual-portfolio-2026
-
 # Python 3:
 python -m http.server 8000
 ```
